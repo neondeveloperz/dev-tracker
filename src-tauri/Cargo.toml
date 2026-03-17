@@ -1,0 +1,33 @@
+[package]
+name = "dev-tracker"
+version = "0.1.0"
+description = "Track your time and productivity"
+authors = ["Armzi"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib", "rlib", "staticlib"]
+# The `_lib` suffix may seem redundant but it is necessary
+# to make the lib name unique and wouldn't conflict with the bin name.
+# This seems to be only an issue on Windows, see https://github.com/rust-lang/cargo/issues/8519
+name = "tauri_app_lib"
+
+[dependencies]
+argon2 = "0.5.3"
+chrono = { version = "0.4.44", features = ["serde"] }
+dotenvy = "0.15.7"
+password-hash = { version = "0.6.0", features = ["alloc", "rand_core"] }
+rand = "0.10.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sqlx = { version = "0.8.6", features = ["chrono", "macros", "postgres", "runtime-tokio-rustls"] }
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-notification = "2"
+tauri-plugin-opener = "2"
+tokio = { version = "1.50.0", features = ["full"] }
+xid = "1.1.1"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
